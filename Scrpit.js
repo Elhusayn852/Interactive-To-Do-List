@@ -1,5 +1,5 @@
 "use strict";
-const Task = (title, description, dueDate, priority, completed = false) => {
+const Task = (title, note, dueDate, priority, completed = false) => {
   const taskId = crypto.randomUUID(); // unique, private
   let _completed = completed; // private mutable state
   const toggleCompleted = () => {
@@ -9,7 +9,7 @@ const Task = (title, description, dueDate, priority, completed = false) => {
 
   return {
     title,
-    description,
+    note,
     dueDate,
     priority,
     taskId,
@@ -21,8 +21,8 @@ const Task = (title, description, dueDate, priority, completed = false) => {
 const taskManager = (function () {
   let tasks = [];
   // To add a task to the list
-  const addTask = (title, description, dueDate, priority) => {
-    const task = Task(title, description, dueDate, priority);
+  const addTask = (title, note, dueDate, priority) => {
+    const task = Task(title, note, dueDate, priority);
     tasks.push(task);
     return task.taskId;
   };
@@ -50,7 +50,7 @@ const taskManager = (function () {
     toggleTaskCompleted,
   };
 })();
-taskManager.addTask("task1", "description1", "2023-01-01", "high"); // for test
+taskManager.addTask("task1", "note", "2023-01-01", "high"); // for test
 console.log(taskManager.getTasks()); // for test
 
 const DisplayController = (function () {

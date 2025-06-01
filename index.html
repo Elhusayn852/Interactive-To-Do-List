@@ -13,33 +13,38 @@
       rel="stylesheet" />
   </head>
   <body>
-    <div class="to-do-list-container">
-      <div class="title-header">
-        <h1>To Do list</h1>
-        <img
-          src="/Line Duotone _ Notes _ Clipboard Check.svg"
-          alt="To do list icon" />
+    <div class="task-manager-container">
+      <div class="task-manager-title">
+        <div class="title">
+          <h1>Task Manager App</h1>
+          <img
+            src="/Line Duotone _ Notes _ Clipboard Check.svg"
+            alt="To do list icon" />
+        </div>
+        <button id="add-task" class="add-task">Add Task+</button>
       </div>
-      <div class="task-list">
-        <ul>
-          <li>
-            <span class="completed">Plan a weekend getaway</span>
-            <button>X</button>
-          </li>
-          <li>
-            <span class="completed">Plan a weekend getaway</span>
-            <button>X</button>
-          </li>
-          <li>
-            <span class="completed">Plan a weekend getaway</span>
-            <button>X</button>
-          </li>
-          <li>
-            <span class="completed">Plan a weekend getaway</span>
-            <button>X</button>
-          </li>
-        </ul>
-      </div>
+      <ul class="tasks-list">
+        <li class="list-item">
+          <h3 class="task-title">
+            Design Moodboard for "Wifaq" Brand Identity
+          </h3>
+          <div class="task-meta-data">
+            <p class="duo-date">
+              <span>Due Date: </span>
+              June 3, 2025
+            </p>
+            <p class="priority">
+              <span>Priority: </span>
+              ★★★★☆
+            </p>
+          </div>
+          <p class="task-note">
+            Collect visual references—colors, typography, imagery—that reflect
+            Wifaq’s values of empathy, trust, and mental well-being. The
+            moodboard should set the tone for the entire identity.
+          </p>
+        </li>
+      </ul>
     </div>
     <div class="task-input-container hidden">
       <form action="">
@@ -49,11 +54,12 @@
           <option value="low">Low</option>
           <option value="medium">Medium</option>
           <option value="high">High</option>
+          <option value="very-high">Very High</option>
         </select>
         <textarea
           placeholder="Describe Your task"
-          name="task description"
-          id="description"></textarea>
+          name="task note"
+          id="note"></textarea>
       </form>
       <button id="add-to-form">+</button>
     </div>

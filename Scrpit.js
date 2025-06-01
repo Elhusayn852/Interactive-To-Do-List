@@ -1,60 +1,58 @@
 "use strict";
-// Select DOM elements
-// Select DOM elements
-const addTaskBtn = document.querySelector("#addTaskBtn");
-const taskInput = document.querySelector("#taskInput");
-const taskList = document.querySelector("#taskList");
-taskInput.addEventListener("keydown", handleKeyPress);
+const Task = (title, description, dueDate, priority, completed = false) => {
+  const taskId = crypto.randomUUID(); // unique, private
+  let _completed = completed; // private mutable state
+  const toggleCompleted = () => {
+    _completed = !_completed;
+  };
+  const getCompleted = () => _completed;
 
-// Attach the event listener using a named function
-addTaskBtn.addEventListener("click", handleAddTask);
+  return {
+    title,
+    description,
+    dueDate,
+    priority,
+    taskId,
+    toggleCompleted,
+    getCompleted,
+  };
+};
 
-// Function to handle adding a new task
-function handleAddTask() {
-  const taskText = taskInput.value.trim();
+const taskManager = (function () {
+  let tasks = [];
+  // To add a task to the list
+  const addTask = (title, description, dueDate, priority) => {
+    const task = Task(title, description, dueDate, priority);
+    tasks.push(task);
+    return task.taskId;
+  };
+  // To remove a task from the last by its unique ID
+  const removeTaskById = (taskId) => {
+    tasks = tasks.filter((task) => task.taskId !== taskId);
+  };
+  // To clear the Task list
+  const clearTasks = () => {
+    tasks = [];
+  };
+  // Get (return) a copy of the [tasks]
+  const getTasks = () => [...tasks];
+  const toggleTaskCompleted = (taskId) => {
+    const task = tasks.find((t) => t.taskId === taskId);
+    if (task) {
+      task.toggleCompleted();
+    }
+  };
+  return {
+    addTask,
+    removeTaskById,
+    clearTasks,
+    getTasks,
+    toggleTaskCompleted,
+  };
+})();
+taskManager.addTask("task1", "description1", "2023-01-01", "high"); // for test
+console.log(taskManager.getTasks()); // for test
 
-  if (taskText === "") {
-    alert("Please enter a task.");
-    return;
-  }
-
-  const listItem = document.createElement("li");
-  listItem.textContent = taskText;
-
-  listItem.addEventListener("click", handleToggleTask);
-
-  const deleteBtn = document.createElement("button");
-  deleteBtn.className = "deleteBtn";
-  deleteBtn.textContent = "❌";
-  deleteBtn.style.marginLeft = "20px";
-
-  deleteBtn.addEventListener("click", handleDeleteTask);
-  // When the delete button is clicked, run the handleDeleteTask() function.
-
-  taskList.appendChild(listItem);
-  // Adds the new list item (with the button inside) to the <ul> list on the page.
-
-  listItem.appendChild(deleteBtn);
-  // Adds the delete button as a child of the new list item.
-
-  taskInput.value = "";
-  // Clears the input field after adding a task.
-}
-
-// Function to toggle task completion
-function handleToggleTask(event) {
-  const taskItem = event.currentTarget;
-  taskItem.classList.toggle("done");
-}
-
-// Function to delete a task
-function handleDeleteTask(event) {
-  event.stopPropagation();
-  const taskItem = event.currentTarget.parentNode;
-  taskList.removeChild(taskItem);
-}
-function handleKeyPress(event) {
-  if (event.key === "Enter") {
-    handleAddTask();
-  }
-}
+const DisplayController = (function () {
+  //some code
+})();

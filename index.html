@@ -14,12 +14,48 @@
   </head>
   <body>
     <div class="to-do-list-container">
-      <h1>My To-Do List</h1>
-      <div>
-        <input id="taskInput" type="text" placeholder="Enter a new task" />
-        <button id="addTaskBtn">Add Task</button>
+      <div class="title-header">
+        <h1>To Do list</h1>
+        <img
+          src="/Line Duotone _ Notes _ Clipboard Check.svg"
+          alt="To do list icon" />
       </div>
-      <ul id="taskList"></ul>
+      <div class="task-list">
+        <ul>
+          <li>
+            <span class="completed">Plan a weekend getaway</span>
+            <button>X</button>
+          </li>
+          <li>
+            <span class="completed">Plan a weekend getaway</span>
+            <button>X</button>
+          </li>
+          <li>
+            <span class="completed">Plan a weekend getaway</span>
+            <button>X</button>
+          </li>
+          <li>
+            <span class="completed">Plan a weekend getaway</span>
+            <button>X</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="task-input-container hidden">
+      <form action="">
+        <input id="task-title" placeholder="Task title" type="text" />
+        <input id="due-date" name="due-date" type="date" />
+        <select name="priority" id="priority">
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+        <textarea
+          placeholder="Describe Your task"
+          name="task description"
+          id="description"></textarea>
+      </form>
+      <button id="add-to-form">+</button>
     </div>
   </body>
 </html>
